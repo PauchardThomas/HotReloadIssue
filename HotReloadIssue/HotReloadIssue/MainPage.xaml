@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="HotReloadIssue.MainPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:hotreloadissue="clr-namespace:HotReloadIssue"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <StackLayout Padding="5">
+        <Label FontAttributes="Bold" Text="* Issue 1 : Triggers not working after updating ContentView" TextColor="Black" />
+        <StackLayout Orientation="Horizontal">
+            <Label Text="is visible" />
+            <Switch x:Name="myswitch" IsToggled="True" />
+        </StackLayout>
+        <hotreloadissue:MyContentView IsVisible="False">
+            <hotreloadissue:MyContentView.Triggers>
+                <DataTrigger Binding="{Binding Source={x:Reference myswitch}, Path=IsToggled}" TargetType="hotreloadissue:MyContentView" Value="true">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </hotreloadissue:MyContentView.Triggers>
+        </hotreloadissue:MyContentView>
+
+        <BoxView Margin="0,10,0,10" BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+        <Label FontAttributes="Bold" Text="* Issue 2 : Controls inside ViewCell not found after updating ViewCell" TextColor="Black" />
+        <ListView HasUnevenRows="True">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <hotreloadissue:MyCell />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

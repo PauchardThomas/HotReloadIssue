@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell x:Class="HotReloadIssue.MyCell"
+          xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:controls="clr-namespace:HotReloadIssue.Controls"
+          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          mc:Ignorable="d">
+    <Frame BorderColor="Red">
+        <StackLayout>
+            <Label Text="My Cell" />
+            <controls:MyControl />
+        </StackLayout>
+    </Frame>
+</ViewCell>
